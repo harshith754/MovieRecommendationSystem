@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home Page</title>
+{% endblock %}
+
+{% block body %}
+<section id="title">
+    <div class="container-fluid title-container">
+          <nav class="navbar  navbar-expand-lg navbar-dark justify-content-between">
+                <a class="navbar-brand" href="">Movie :Match</a>
+                <span class="navbar-text header-description">
+                    Recommends You Movies!!
+                </span>
+          </nav>
+    </div>
+</section>
+
+    <div class="image-container container-fluid text-center fill">
+
+
+        <img src="static/images/new-years-movies-index.jpg" alt="Home Page Image" class='img-fluid image-container'>
+
+        <div class="image-overlay container-fluid">
+          <h1 class="title-inside">Movie Match: Movie Recommendation System</h1>
+                      <!-- initial_page.html -->
+            <form method="post" action="/">
+              <input type="submit" value="Go!!" class="btn btn-primary button">
+            </form>
+        </div>
+    </div>
+{% endblock %}

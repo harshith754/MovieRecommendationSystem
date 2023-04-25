@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Recommend Page</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include jQuery UI library -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <!-- Include jQuery UI CSS -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+
+{% block body %}
+<section id="title">
+    <div class="container-fluid title-container">
+          <nav class="navbar  navbar-expand-lg navbar-dark justify-content-between">
+                <a class="navbar-brand" href="">Movie :Match</a>
+                <span class="navbar-text header-description">
+                    Recommends You Movies!!
+                </span>
+          </nav>
+    </div>
+</section>
+
+
+<div class="container-fluid text-center image-container">
+    <div class="col align-self-center">
+      <h1 class="text-center white ">Movie Match: Movie Recommendation System</h1>
+        <form method="post" action="/recommend" class="mt-5" >
+            <div class="form-group row">
+                <label for="movie_name" class="col-sm-3 col-form-label white">Enter movie name:</label>
+                <div class="col-sm-6">
+                    <input type="text" id="movie_name" name="movie_name"  class="form-control"/>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary ">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Define an array of movies for autocomplete
+    var movies = [
+      "Avengers: Endgame",
+      "The Shawshank Redemption",
+      "The Freshman",
+      "Pulp Fiction",
+      "The Dark Knight",
+      "Jurassic World Dominion",
+      "Forrest Gump",
+      "Star Wars: A New Hope",
+      "The Matrix",
+      "Top Gun: Maverick"
+    ];
+
+    // Initialize autocomplete on the movie input field
+    $(document).ready(function() {
+      $("#movie_name").autocomplete({
+        source: movies // Use the movies array as the source for autocomplete
+      });
+    });
+  </script>
+
+{% endblock %}

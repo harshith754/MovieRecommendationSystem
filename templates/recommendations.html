@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Recommendations Page</title>
+{% endblock %}
+
+{% block body %}
+<section id="title">
+    <div class="container-fluid title-container">
+          <nav class="navbar  navbar-expand-lg navbar-dark justify-content-between">
+                <a class="navbar-brand" href="">Movie :Match</a>
+                <span class="navbar-text header-description">
+                    Recommends You Movies!!
+                </span>
+          </nav>
+    </div>
+</section>
+
+
+<div class="container-fluid text-center image-container">
+    <div class="col align-self-center">
+      <h1 class="text-center white ">The Recommended Movies are:</h1>
+        <div class="container-fluid text-center image-container">
+            <ul class="list-group list-group-flush">
+            {% for movie in movie_recommendations %}
+                <li class="list-group-item">{{ movie }}</li>
+            {% endfor %}
+        </div>
+    </ul>
+    </div>
+</div>
+
+
+
+    <!-- Include the Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}
