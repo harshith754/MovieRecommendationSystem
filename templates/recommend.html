@@ -40,27 +40,32 @@
     </div>
 </div>
 
+
+
 <script>
     // Define an array of movies for autocomplete
-    var movies = [
-      "Avengers: Endgame",
-      "The Shawshank Redemption",
-      "The Freshman",
-      "Pulp Fiction",
-      "The Dark Knight",
-      "Jurassic World Dominion",
-      "Forrest Gump",
-      "Star Wars: A New Hope",
-      "The Matrix",
-      "Top Gun: Maverick"
-    ];
+
+
+    const movies = {{ movie_name_list|tojson}}
 
     // Initialize autocomplete on the movie input field
-    $(document).ready(function() {
-      $("#movie_name").autocomplete({
-        source: movies // Use the movies array as the source for autocomplete
-      });
+<!--    $(document).ready(function() {-->
+<!--      $("#movie_name").autocomplete({-->
+<!--        source: movies // Use the movies array as the source for autocomplete-->
+<!--      });-->
+<!--    });-->
+    $('#movie_name').autocomplete({
+    source: function(request, response) {
+        $.ajax({
+            url: '/autocomplete',
+            data: { term: request.term },
+            success: function(data) {
+                response(data);
+            }
+        });
+    }
     });
   </script>
+
 
 {% endblock %}
