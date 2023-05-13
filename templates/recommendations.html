@@ -5,31 +5,29 @@
 {% endblock %}
 
 {% block body %}
-<section id="title">
-    <div class="container-fluid title-container">
-          <nav class="navbar  navbar-expand-lg navbar-dark justify-content-between">
-                <a class="navbar-brand" href="">Movie :Match</a>
-                <span class="navbar-text header-description">
-                    Recommends You Movies!!
-                </span>
-          </nav>
-    </div>
-</section>
 
 
-<div class="container-fluid text-center image-container">
+
+<div class="container-fluid text-center image-container ">
     <div class="col align-self-center">
       <h1 class="text-center white ">The Recommended Movies are:</h1>
-        <div class="container-fluid text-center image-container">
-            <ul class="list-group list-group-flush">
+        <div class="container-fluid text-center ">
+            <ul class="list-group mt-4">
             {% for movie in movie_recommendations %}
-                <li class="list-group-item">{{ movie }}</li>
+                <a href="/moviepage/{{movie}}">
+                <li class="list-group-item text-light list-custom ">
+
+                    {{ movie }}
+
+                </li>
+                </a>
+
             {% endfor %}
         </div>
     </ul>
     </div>
-    <form method="post" action="/recommendations">
-              <input type="submit" value="Go to home page." class="btn btn-primary button">
+    <form method="post" action="/recommendations" class="mt-4">
+              <input type="submit" value="Go to home page." class="btn btn-lg btn-secondary border-white">
     </form>
 </div>
 
@@ -39,3 +37,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 {% endblock %}
+

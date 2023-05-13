@@ -11,29 +11,19 @@
 {% endblock %}
 
 {% block body %}
-<section id="title">
-    <div class="container-fluid title-container">
-          <nav class="navbar  navbar-expand-lg navbar-dark justify-content-between">
-                <a class="navbar-brand" href="">Movie :Match</a>
-                <span class="navbar-text header-description">
-                    Recommends You Movies!!
-                </span>
-          </nav>
-    </div>
-</section>
 
 
-<div class="container-fluid text-center image-container">
+<div class="container-fluid text-center  mt-5">
     <div class="col align-self-center">
       <h1 class="text-center white ">Movie Match: Movie Recommendation System</h1>
         <form method="post" action="/recommend" class="mt-5" >
             <div class="form-group row">
-                <label for="movie_name" class="col-sm-3 col-form-label white">Enter movie name:</label>
-                <div class="col-sm-6">
+                <label for="movie_name" class="col-sm-3 col-form-label ">Enter movie name:</label>
+                <div class="col-sm-6 center">
                     <input type="text" id="movie_name" name="movie_name"  class="form-control"/>
                 </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary ">Submit</button>
+                <div class="col-sm-2 center-button" >
+                    <button type="submit" class="btn btn-lg btn-secondary border-white">Submit</button>
                 </div>
             </div>
         </form>

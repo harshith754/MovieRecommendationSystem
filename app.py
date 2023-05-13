@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 import imdb
 import json
+import imdb
 
 app = Flask(__name__)
 # Load Files
@@ -31,12 +32,25 @@ movie_name_list = movies['movie title'].values.tolist()
 
 @app.route('/', methods=['GET', 'POST'])
 def initial_page():
-    print(movie_name_list)
+
     if request.method == 'POST':
-        # Perform some processing when the button is clicked
-        # Redirect to the recommended route after processing
         return redirect('/recommend')
     return render_template('homepage.html')
+
+@app.route('/moviepage/<string:name>')
+def movie(name):
+    ia = imdb.IMDb()
+    movie_tag = info.loc[info['movie title'] == name, 'path'].iloc[0]
+    movie_id = movie_tag[9:-1]
+    movie = ia.get_movie(movie_id)
+
+    poster = movie.get('full-size cover url')
+    description = movie.get('plot outline')[:800]
+    genres = movie.get('genres')
+    year =movie.get('year')
+    rating =movie.get('rating')
+    return render_template('moviepage.html',title=name, image=poster, description=description, year=year, genres=genres, rating=rating )
+
 
 @app.route('/recommend', methods=['GET', 'POST'])
 def recommend():
@@ -46,20 +60,19 @@ def recommend():
         print("I got",movie_name)
 
         recommended_movies=  recommendMovies(movie_name)
-        # Replace this with your own recommendation logic
-
-        # Render the recommendation result template
         return render_template('recommendations.html', movie_recommendations=recommended_movies)
 
     movies_df = movies['movie title'].to_frame().reset_index()  # Convert Series to DataFrame
     movies_list = movies_df.to_dict(orient='records')  # Convert DataFrame to list of dictionaries
-    movies_json = json.dumps(movies_list)  # Serialize movies list to JSON
     return render_template('recommend.html',movie_name_list=movie_name_list)
+
+
 
 
 @app.route('/recommendations',methods=['POST'])
 def fin1():
     return redirect(url_for('initial_page'))
+
 @app.route('/autocomplete', methods=['GET'])
 def autocomplete():
     search_term = request.args.get('term', '')  # Get the search term from request arguments
